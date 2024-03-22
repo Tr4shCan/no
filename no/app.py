@@ -11,7 +11,7 @@ db = client['web']
 # checkout page,
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/nothankyou', methods=['GET', 'POST'])
 def signin():
   if request.method == 'POST':
     username = request.form['username']
@@ -26,7 +26,7 @@ def signin():
   return render_template('signin.html')
 
 
-@app.route('/sell/<username>', methods=['GET', 'POST'])
+@app.route('/nothankyou/sell/<username>', methods=['GET', 'POST'])
 def sell(username):
   if request.method == "POST":
     name = request.form['name']
@@ -51,7 +51,7 @@ def sell(username):
     return render_template('sell.html', username=username)
 
 
-@app.route('/home/<username>')
+@app.route('/nothankyou/home/<username>')
 def home(username):
   products = db.Products.find()
   return render_template('home.html', username=username, products=products)
@@ -67,7 +67,7 @@ def oops404(e):
   return render_template('404.html')
 
 
-@app.route('/products/<username>', methods=["POST", "GET"])
+@app.route('/nothankyou/products/<username>', methods=["POST", "GET"])
 def products(username):
   if request.method == "POST":
     id = int(request.form["productid"])
@@ -78,8 +78,8 @@ def products(username):
   else:
     products = db.Products.find({"username": username})
     return render_template('products.html',
-                           username=username,
-                           products=products)
+    username=username,
+    products=products)
 
 
 def check_password(password):
@@ -101,7 +101,7 @@ def check_password(password):
     return False
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/nothankyou/register', methods=['GET', 'POST'])
 def register():
   if request.method == 'POST':
     name = request.form['name']
@@ -126,7 +126,7 @@ def register():
   return render_template('register.html')
 
 
-@app.route('/about/<username>', methods=['GET', 'POST'])
+@app.route('/nothankyou/about/<username>', methods=['GET', 'POST'])
 def about(username):
   if request.method == 'POST':
     chatbot_responses = {
